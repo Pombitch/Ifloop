@@ -13,7 +13,7 @@ public class Main {
      * @return integer from input
      */
     public static void readOneIntFromInputAndPrintIt() {
-        int input = Support.safeReadInt();
+        int input = com.engeto.ifloop.Support.safeReadInt();
         System.out.println("You entered: "+input);
     }
     //endregion
@@ -24,6 +24,12 @@ public class Main {
      * input.
      */
     public static void readIntsFromInputAndPrintItUntilNegative() {
+        int input;
+        do {
+            input = com.engeto.ifloop.Support.safeReadInt();
+            if (input >= 0)
+                System.out.println(input);
+        } while (input >= 0);
     }
 
     /**
@@ -31,7 +37,14 @@ public class Main {
      * @return Sum of input numbers expect of terminating negative number.
      */
     public static int sumAllInputUntilNegative() {
-        return 0;
+        int input;
+        int sumOfInputs = 0;
+        do {
+            input = com.engeto.ifloop.Support.safeReadInt();
+            if (input >= 0)
+                sumOfInputs = sumOfInputs + input;
+        } while (input >= 0);
+        return sumOfInputs;
     }
 
     /**
@@ -39,7 +52,14 @@ public class Main {
      * @return List of read values (terminating negative value is NOT included)
      */
     public static List storeAllInputInArrayListUntilNegative() {
-        return null;
+        ArrayList<Integer> listOfInputs = new ArrayList<Integer>();
+        int input = 0;
+        while (input >= 0) {
+            input = com.engeto.ifloop.Support.safeReadInt();
+            if (input >= 0)
+                listOfInputs.add(input);
+        }
+        return listOfInputs;
     }
 
     /**
@@ -47,10 +67,21 @@ public class Main {
      * @param list List of integers to print.
      */
     public static void printAllIntegersFromList(List<Integer> list) {
+        for (int valueOfInput : list) {
+            System.out.print(valueOfInput);
+            if (list.indexOf(valueOfInput) < list.size() - 1)
+                System.out.print(", ");
+            else
+                System.out.println();
+        }
     }
 
     public static Integer sumAllIntegersFromList(List<Integer> list) {
-        return null;
+        int sumOfValues = 0;
+        for (int valueOfInput : list) {
+            sumOfValues += valueOfInput;
+        }
+        return sumOfValues;
     }
     //endregion
 
@@ -61,6 +92,18 @@ public class Main {
      * @param list List of integers to print.
      */
     public static void printIntegersUnderLimit(List<Integer> list, int limit) {
+        boolean firstPrint = true;
+        for (int valueOfInput : list) {
+            if (valueOfInput < limit) {
+                if (firstPrint) {
+                    System.out.print(valueOfInput);
+                    firstPrint = false;
+                }
+                else
+                    System.out.print(", " + valueOfInput);
+            }
+        }
+        System.out.println();
     }
 
     /**
@@ -68,6 +111,17 @@ public class Main {
      * @param list List of integers to print.
      */
     public static void printIntegersWithReplace(List<Integer> list) {
+        for (int valueOfInput : list) {
+            switch (valueOfInput) {
+                case 1: System.out.println("one");
+                break;
+                case 2: System.out.println("two");
+                break;
+                case 3: System.out.println("three");
+                break;
+                default: System.out.println(valueOfInput);
+            }
+        }
     }
     //endregion
 
